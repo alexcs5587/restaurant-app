@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/style.css" type="text/css" rel="stylesheet">
+    <title><%=r.name%></title>
+    <script type="text/javascript">
+        function href() {
+            window.location.assign('');
+        }
+    </script>
+</head>
+
+<body>
+    <div class="box">
+        <h1><%=r.name%></h1>
+        <form id='updateForm' action="/restaurant/update" method='POST' enctype="multipart/form-data"></form>
+        <% if (r.photo && r.photo_mimetype) { %>
+            <img src='data:"<%=r.photo_mimetype%>";base64, <%=r.photo%>' />
+            <p><b>Mime Type: <%=r.photo_mimetype%></b></p>
+            <% } %>
+        <p><b>Restaurant Name : </b></p>
+        <input type='text' name='name' placeholder="Restaurant Name" value="<%=r.name%>" form="updateForm" <% if (r.owner != cu) { %> readonly <% }%>/>
+        <input type='hidden' name='restaurant_id' value="<%=r.restaurant_id%>" form="updateForm" />
+        <input type="hidden" name="photo" value="<%=r.photo%>" form="updateForm" />
+        <input type="hidden" name="photo_mimetype" value="<%=r.photo_mimetype%>" form="updateForm" />
+        <p><b>Borough : </b></p>
+        <input type='text' name='borough' placeholder="Borough" value="<%=r.borough%>" form="updateForm" <% if (r.owner != cu) { %> readonly <% }%> />
+        <p><b>Cuisine : </b></p>
+        <input type='text' name='cuisine' placeholder="Cuisine" value="<%=r.cuisine%>" form="updateForm" <% if (r.owner != cu) { %> readonly <% }%> />
+        <p><b>Street : </b></p>
+        <input type='text' name='street' placeholder="Street" value="<%=r.address.street%>" form="updateForm" <% if (r.owner != cu) { %> readonly <% }%> />
+        <p><b>Building : </b></p>
+        <input type='text' name='building' placeholder="Building" value="<%=r.address.building%>" form="updateForm" <% if (r.owner != cu) { %> readonly <% }%>/>
+        <p><b>Zipcode : </b></p>
+        <input type='text' name='zipcode' placeholder="Zip code" value="<%=r.address.zipcode%>" form="updateForm" <% if (r.owner != cu) { %> readonly <% }%>/>
+
+        <p><b>GPS Coordinates (lat.) : </b></p>
+        <input type='text' name='lat' placeholder="Latitude" value="<%=r.address.coord[0]%>" form="updateForm" <% if (r.owner != cu) { %> readonly <% }%>/>
+        <p><b>GPS Coordinates (lon.) : </b></p>
+        <input type='text' name='lon'/ placeholder="Longitude" value="<%=r.address.coord[1]%>" form="updateForm" <% if (r.owner != cu) { %> readonly <% }%>/>
+        <% if (r.address.coord.length > 0) { %>
+        <input type="button" 
+            onclick="window.open('https://www.google.com/maps/?q=<%=r.address.coord[0]%>,<%=r.address.coord[1]%>');"
+            value="Google Map" target="_blank" />
+        <% } %>
+        
+        <p><b>Rating : </b></p>
+        <% if (r.grades.length > 0) { %>
+        <% for (i in r.grades) { %>
+        <% if (r.grades[i].user == cu) { %>
+        <p>You gave <%=r.grades[i].score%> scores.</p>
+        <% } else { %>
+        <p><%=r.grades[i].user%> gave <%=r.grades[i].score%> scores.</p>
+        <% } %>
+        <% } %>
+        <% } else { %>
+        <p>No scores</p>
+        <% } %>
+        <% if (!(isGraded)) { %>
+        <p><b>Your are giving this restaurant(1-10) scores</b></p>
+        <form id="scoreForm" action='/restaurant/rate' method='POST'></form>
+        <input  type='text' name='score' placeholder="Score" form="scoreForm" />
+        <input  type="hidden" name="restaurant_id" value="<%=r.restaurant_id%>" form="scoreForm" />
+        <input  type="hidden" name="user" value="<%=cu%>" form="scoreForm" />
+        <input  type="submit" value="Rate" form="scoreForm" />
+        <% } %>
+        <p><b>Created by: <%=r.owner%></b></p>
+        <% if (r.owner == cu) { %>
+        <p><b>Photo: </b></p>
+        <input type='file' name='photo' form="updateForm" />
+        <form id="deleteForm" action='/restaurant/delete' method='POST'></form>
+        <input  type="hidden" name="restaurant_id" value="<%=r.restaurant_id%>" form="deleteForm" />
+        <p><input  type="submit" value="Update changes" form="updateForm" style="background:cadetblue;"/></p>
+        <span class="logout">
+            <p><input  type="submit" value="Delete Restaurant" form="deleteForm" /></p>
+        </span>
+        <% } %>
+
+        <input  type="button" onclick="location.href='/restaurant/read';" value="Back" />
+    </div>
+</body>
+
+</html>

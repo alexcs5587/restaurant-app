@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/style.css" type="text/css" rel="stylesheet">
+    <title>Search Restaurant</title>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</head>
+
+<body>
+    <div class="box">
+        <h1>Search Restaurant</h1>
+
+        <form action="<%=path%>" method='POST' enctype="multipart/form-data">
+            <p><b>Restaurant Name : </b></p>
+            <input type='text' name='name' placeholder="Restaurant Name" />
+            <p><b>Borough : </b></p>
+            <input type='text' name='borough' placeholder="Borough" />
+            <p><b>Cuisine : </b></p>
+            <input type='text' name='cuisine' placeholder="Cuisine" />
+            <p><b>Owner : </b></p>
+            <input type='text' name='owner' placeholder="Owner" />
+            <p><b>Rated by : </b></p>
+            <input type='text' name='user' placeholder="User" />
+            <p><b>Score is : </b></p>
+            <select name='scoreCompare'>
+                <option value="0">Equals To</option>
+                <option value="1">Greater Than</option>
+                <option value="2">Smaller Than</option>
+            </select>
+            <input type='text' name='score' placeholder="Score" />
+            <select name='match'>
+                <option value="0">Match All</option>
+                <option value="1">Match Any One</option>
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+
+        <input type="button" onclick="location.href='/';" value="Back" />
+    </div>
+
+</body>
+
+</html>

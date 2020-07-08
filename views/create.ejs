@@ -1,0 +1,47 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/style.css" type="text/css" rel="stylesheet">
+    <title>Create Restaurant</title>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</head>
+
+<body>
+    <div class="box">
+        <h1>Create Restaurant</h1>
+
+        <form action="<%=path%>" method='POST' enctype="multipart/form-data">
+            <p><b>Restaurant Name : </b></p>
+            <input type='text' name='name' placeholder="Restaurant Name" />
+            <p><b>Borough : </b></p>
+            <input type='text' name='borough' placeholder="Borough" />
+            <p><b>Cuisine : </b></p>
+            <input type='text' name='cuisine' placeholder="Cuisine" />
+            <p><b>Street : </b></p>
+            <input type='text' name='street' placeholder="Street" />
+            <p><b>Building : </b></p>
+            <input type='text' name='building' placeholder="Building" />
+            <p><b>Zip code : </b></p>
+            <input type='text' name='zipcode' placeholder="Zip code" />
+            <p><b>GPS Coordinates (lat.) : </b></p>
+            <input type='text' name='lat' placeholder="Latitude" />
+            <p><b>GPS Coordinates (lon.) : </b></p>
+            <input type='text' name='lon' placeholder="Longitude"/>
+            <p><b>Your are giving this restaurant(1-10) scores : </b></p>
+            <input type='text' name='score' placeholder="Score" />
+            <p><b>Photo : </b></p>
+            <input type='file' name='photo' />
+            <input type="submit" value="Submit">
+        </form>
+
+        <input type="button" onclick="location.href='/';" value="Back" />
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+{
+    "name": "restaurant-app",
+    "description": "restaurant-app",
+    "author": "AlexChui",
+    "version": "1.0.0",
+    "dependencies": {
+        "express": "*",
+        "express-fileupload": "*",
+        "cookie-session": "*",
+        "body-parser": "*",
+        "random-key": "latest",
+        "ejs": "*",
+        "mongodb": "3.1"
+    },
+    "engine": "*",
+    "scripts": {
+        "start": "node server.js"
+    }
+}

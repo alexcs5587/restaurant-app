@@ -1,0 +1,27 @@
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="/css/style.css" type="text/css" rel="stylesheet">
+	<title><%=title%></title>
+</head>
+
+<body>
+	<div class="box">
+		<h1>Welcome, <%=username%><br> Showing <%=restaurants.length%> documents</h1>
+		<input type="button" style="background: rgb(0, 83, 138);"onclick="location.href='/restaurant/search';" value="Search" />
+		<% for (i in restaurants) { %>
+		<% var num = parseInt(i)+1%>
+		<span class="item"><input type="button"
+				onclick="location.href='/restaurant/detail?restaurant_id=<%=restaurants[i].restaurant_id%>';"
+				value="<%=num%>. <%=restaurants[i].name%>" /></span>
+		<% } %>
+
+		<input type="button" onclick="location.href='/restaurant/create';" value="Create" />
+		<span class="logout">
+			<button onclick="location.href='/logout';">Logout</button>
+		</span>
+	</div>
+</body>
+
+</html>
