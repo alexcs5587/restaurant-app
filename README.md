@@ -1,2 +1,2 @@
 # Restaurant-app
-An **Express server** that allows users to create an account and rate restaurants.
+A Node.js,Express web application that allows users to create accounts and rate restaurants.
