@@ -6,7 +6,7 @@ const fileUpload = require('express-fileupload');
 const assert = require('assert');
 const MongoClient = require('mongodb').MongoClient;
 const rand = require("random-key");
-const mongoURL = "mongodb+srv://mytestingdb:mytestingdb@cluster0-jyai0.azure.mongodb.net/test?retryWrites=true&w=majority";
+const mongoURL = "mongodb+srv://mytestingdb:<password>@cluster0.jyai0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 app.set('view engine', 'ejs');
 app.use(fileUpload());
